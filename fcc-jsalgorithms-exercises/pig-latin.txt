@@ -1,0 +1,22 @@
+function translatePigLatin(str) {
+  const firstVowel = str.match(/[a,e,i,o,u,A,E,I,O,U]/);
+  if(firstVowel != null && firstVowel.index == 0) {
+    str += "way";
+  }
+  else {
+    let firstVowelIndex;
+    if(firstVowel == null) {
+       firstVowelIndex = 0;
+    }
+    else {
+      firstVowelIndex = firstVowel.index;
+    }
+    let head = str.slice(0,firstVowelIndex);
+    let tail = str.slice(firstVowelIndex,str.length);
+    str = tail+head+"ay";  
+  }
+  console.log(str);
+  return str;
+}
+
+translatePigLatin("rhythm");

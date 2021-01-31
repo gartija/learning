@@ -1,0 +1,9 @@
+function destroyer(arr) {
+  const args = [...arguments];
+  args.shift();
+  arr = arr.filter((curVal) => args.indexOf(curVal)==-1);
+  console.log(arr);
+  return arr;
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);

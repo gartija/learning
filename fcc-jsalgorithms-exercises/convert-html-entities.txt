@@ -1,0 +1,19 @@
+function convertHTML(str) {
+  const convMap = {"&":"&amp;","<":"&lt;",">":"&gt;","'":"&apos;","\"":"&quot;"};
+  let convertedString = [...str].reduce((retStr,currLetter) => {
+      let entity;
+      if((entity = convMap[currLetter])!== undefined) {
+        retStr+=entity;
+      }
+      else {
+        retStr+=currLetter;
+      }
+      return retStr;
+    },
+    ""
+  );
+  console.log(convertedString);
+  return convertedString;
+}
+
+convertHTML("Dolce & Gabbana");

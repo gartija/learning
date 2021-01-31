@@ -1,0 +1,24 @@
+function spinalCase(str) {
+  //Here I add a a space previous to each uppercase and _ char
+  str = str.replace(/([A-Z])/g,' $1').replace(/_/g,' ');
+  //Here I split by all non aplphanumeric characters
+  let words = str.split(/\W/);
+  console.log(words);
+  //Would be great to try to do the previous two steps in one. I need more Regex experience.
+  const finalString = words.reduce((spinalCaseString,currWord) => {
+      if(currWord!="") {
+        if(spinalCaseString !== "") {
+          spinalCaseString+="-";
+        }
+        return spinalCaseString+currWord.toLowerCase();
+      }
+      return spinalCaseString;
+    },
+  ""
+  ); 
+  
+  return finalString;
+}
+
+spinalCase('This Is Spinal Tap');
+spinalCase("The_Andy_Griffith_Show")

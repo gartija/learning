@@ -1,0 +1,18 @@
+function sumFibs(num) {
+  let fib = 1;
+  let next = 1;
+  let sumOdd = 0;
+  while(fib<=num) {
+    if(fib%2!=0) {
+      sumOdd+=fib;
+    }
+    //console.log(fib);
+    let temp = next;
+    next = fib + next;
+    fib = temp;    
+  }
+  //console.log("S odd "+sumOdd);
+  return sumOdd;
+}
+
+sumFibs(75024);
