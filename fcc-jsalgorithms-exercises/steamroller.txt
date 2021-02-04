@@ -1,0 +1,15 @@
+function steamrollArray(arr) {
+  let retArr = [];
+  for(let index in arr) { 
+    if(Array.isArray(arr[index])) {
+      let sub = steamrollArray(arr[index]);
+      retArr = retArr.concat(sub);
+    }
+    else {
+      retArr.push(arr[index]);
+    }
+  }
+  return retArr;
+}
+
+console.log(steamrollArray([1, {}, [3, [[4]]]]));

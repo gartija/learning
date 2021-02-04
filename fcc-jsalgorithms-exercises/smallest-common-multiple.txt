@@ -1,0 +1,18 @@
+function smallestCommons(arr) {
+  const min = arr[0]-arr[1]>0?arr[1]:arr[0];
+  const max = arr[0]-arr[1]>0?arr[0]:arr[1];
+  let found = false;
+  //Not sure an odd number could do a MCM. Hence I start at the next even number
+  let commonMultiple = max%2 == 0?max:max+1;
+  while(!found) {
+    commonMultiple+=2;
+    for(let i = min; i<=max ; i++) {
+      found = true;
+      if(commonMultiple%i!=0) {
+        i=max;
+        found = false;
+      }
+    }
+  }
+  return commonMultiple;
+}
