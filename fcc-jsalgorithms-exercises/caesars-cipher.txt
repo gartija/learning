@@ -1,0 +1,17 @@
+function rot13(str) {
+  const rotN = 13;
+  const ZCode = "Z".charCodeAt(0);
+  const ACode = "A".charCodeAt(0);
+  var res = str.replace(/\w/gi, function (x) {
+    let decodedCharCode=x.charCodeAt(0); 
+    if(decodedCharCode<ACode+rotN) {
+      decodedCharCode = ZCode+decodedCharCode-ACode+1;
+    }
+    let decodedChar = String.fromCharCode(decodedCharCode-rotN);
+    return decodedChar;
+  });
+  console.log(res);
+  return res;
+}
+
+rot13("SERR YBIR?");

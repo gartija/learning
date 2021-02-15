@@ -1,0 +1,14 @@
+function palindrome(str) {
+  let clean = str.toLowerCase().match(/[a-z0-9]/g);
+  console.log(clean);
+  for(let i = 0; i< clean.length/2; i++) {
+    if(clean[i]!==clean[clean.length-1-i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
+
+palindrome("five|\_/|four");
