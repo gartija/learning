@@ -27,7 +27,6 @@ class Result {
         Integer previousSock = 0;
         Collections.sort(ar);
         for(Integer currentSock : ar) {
-            //System.out.println(currentSock);
             if(currentSock.equals(previousSock)) {
                 numPairs++;
                 previousSock = 0;
