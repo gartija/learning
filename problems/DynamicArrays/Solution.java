@@ -28,7 +28,7 @@ class Result {
         List <Integer> ret = new ArrayList<>();
         List <List<Integer>>arr = new ArrayList<>() 
         {{
-            for(int i = 0; i< queries.size();i++) {
+            for(int i = 0; i< n;i++) {
                 List<Integer> subList=new ArrayList<>();
                 add(subList);
             }
@@ -42,9 +42,6 @@ class Result {
             else if(query.get(0)==2) {
                 lastAnswer = currentSubArray.get((query.get(2)%(currentSubArray.size())));
                 ret.add(lastAnswer);
-                if((query.get(2)%(currentSubArray.size()))>79999) {
-                    System.out.println("Longer query "+query.get(2));
-                }
             }
         }
         return ret; 
@@ -54,6 +51,7 @@ class Result {
 
 public class Solution {
     public static void main(String[] args) throws IOException {
+        //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
