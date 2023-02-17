@@ -24,32 +24,35 @@ class Result {
         String winner = "Richard";
         long next = n;
         while(next>1) {
-            //System.out.println(next+" "+Math.log(next)/Math.log(2));
-            next = nextNumber(next);
-            winner = winner.equals("Richard")?"Louise":"Richard";
-        }
-
-
-        /*Double sq = Math.pow(n,0.5);
-        Integer intVal = sq.intValue();
-        while(sq>1) {
-            System.out.println(n+" "+sq+" "+intVal+" "+(sq>intVal));
-            //Not extact square
-            if(sq>intVal) {
-                n = n - Double.valueOf(Math.pow(intVal,2)).longValue();
-            }    
-            else {//Exact square
-                n = n/2;    
+            double logTwo = Math.log(next)/Math.log(2);
+            //Case exact POW2 works
+            if(logTwo==Double.valueOf(logTwo).intValue()) {
+                if(logTwo%2!=0) {
+                    winner = winner.equals("Richard")?"Louise":"Richard";
+                }
+                next = 1;    
             }
-            sq = Math.sqrt(n);
-            intVal = sq.intValue();
-            winner = winner.equals("Richard")?"Louise":"Richard";
-        }*/
+            else {
+                next = next-Double.valueOf(Math.pow(2,Double.valueOf(logTwo).intValue())).longValue();
+                winner = winner.equals("Richard")?"Louise":"Richard";
+            }
+        }
         return winner;
     }
 
     private static long nextNumber(long n) {
-        long powerOfTwo = 2L;
+        
+        double logTwo = Math.log(n)/Math.log(2);
+        double closestPow = Math.pow(2,Double.valueOf(logTwo).intValue());
+        if(logTwo>Double.valueOf(logTwo).intValue()) {
+            System.out.println(" Not found pow "+(n-Double.valueOf(closestPow).longValue())+" n, closestPow, log2, potencia "+n+", "+Double.valueOf(closestPow).longValue()+", "+logTwo+" "+Double.valueOf(logTwo).intValue());
+            return n-Double.valueOf(closestPow).longValue();
+        }
+        else {
+            System.out.println("Found pow "+n/2);
+            return n/2;
+        }
+        /*long powerOfTwo = 2L;
         for(int i=1;i<=64;i++) {
             if(n==powerOfTwo) {
                 //System.out.println("Found pow "+n/2);
@@ -64,7 +67,7 @@ class Result {
             }
         }
         //It shouldn't get to this point
-        return powerOfTwo;
+        return powerOfTwo;*/
     }
 
 }
