@@ -39,37 +39,6 @@ class Result {
         }
         return winner;
     }
-
-    private static long nextNumber(long n) {
-        
-        double logTwo = Math.log(n)/Math.log(2);
-        double closestPow = Math.pow(2,Double.valueOf(logTwo).intValue());
-        if(logTwo>Double.valueOf(logTwo).intValue()) {
-            System.out.println(" Not found pow "+(n-Double.valueOf(closestPow).longValue())+" n, closestPow, log2, potencia "+n+", "+Double.valueOf(closestPow).longValue()+", "+logTwo+" "+Double.valueOf(logTwo).intValue());
-            return n-Double.valueOf(closestPow).longValue();
-        }
-        else {
-            System.out.println("Found pow "+n/2);
-            return n/2;
-        }
-        /*long powerOfTwo = 2L;
-        for(int i=1;i<=64;i++) {
-            if(n==powerOfTwo) {
-                //System.out.println("Found pow "+n/2);
-                return n/2;
-            }
-            else if(n<powerOfTwo) {
-                //System.out.println(n+" Not found pow "+(n-powerOfTwo/2));
-                return n-powerOfTwo/2;
-            }
-            else {
-                powerOfTwo*=2;
-            }
-        }
-        //It shouldn't get to this point
-        return powerOfTwo;*/
-    }
-
 }
 
 public class Solution {
