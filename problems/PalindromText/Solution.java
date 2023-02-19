@@ -28,7 +28,7 @@ class Result {
             int len =arr.length;
             if(arr[i]!=arr[len-1-i]) {
                 if(arr[i]==arr[len-2-i]) {
-                    return len-1;
+                    return len-1-i;
                 }
                 else {
                     return i;
