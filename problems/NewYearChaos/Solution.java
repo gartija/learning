@@ -22,7 +22,7 @@ class Result {
         int bribes = 0; 
         for(int i = q.size(); i>0;i--) {
             int index = q.indexOf(Integer.valueOf(i));
-            System.out.println("i "+i+" index "+index); 
+            //System.out.println("i "+i+" index "+index); 
             if(i-(index+1)>=3) {
                 System.out.println("Too chaotic"); 
                 return; 
@@ -30,29 +30,6 @@ class Result {
             bribes+=i-(index+1);
             q.remove(index);
         }
-        
-        /*for(int i = 0; i<q.size(); i++) {
-            if(i+1<q.size()) {
-                int diff = q.get(i)-q.get(i+1);
-                if(diff>=3) {
-                    System.out.println("Too chaotic"); 
-                    return;   
-                }
-                else if(diff<3 && diff>0) {
-                    bribes+=diff;    
-                }
-            }
-            /*if(i+1-q.get(i)<=-3) {
-                System.out.println("Too chaotic");
-                return;
-            }
-            else if(i+1-q.get(i)<0) {
-                bribes+=Math.abs(i+1-q.get(i));
-            }
-            else if(i+1<q.size() && q.get(i)>q.get(i+1)) {
-                bribes++;
-            }
-        }*/
         System.out.println(bribes);
     }
 
