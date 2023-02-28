@@ -30,7 +30,6 @@ class Result {
         Integer sumS2 = h2.stream().mapToInt(Integer::intValue).sum();
         Integer sumS3 = h3.stream().mapToInt(Integer::intValue).sum();
         int h1i=0,h2i=0,h3i=0;
-        System.out.println("---- "+sumS1+" "+sumS2+" "+sumS3);
         
         Integer min = Math.min(Math.min(sumS1, sumS2),sumS3);
         
@@ -59,7 +58,6 @@ class Result {
             }
         }        
         return min;
-
     }
 
 }
