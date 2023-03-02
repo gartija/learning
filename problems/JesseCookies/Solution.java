@@ -47,7 +47,6 @@ class Result {
                     done = true;
                     ret = -1;
                 }
-                
             }
         }
         return ret;
