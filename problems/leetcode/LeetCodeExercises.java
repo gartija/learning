@@ -444,6 +444,7 @@ public class LeetCodeExercises {
     class ListNode {
         int val;
         ListNode next;
+        ListNode() {}
         ListNode(int x) { val = x; }
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     } 
@@ -452,5 +453,114 @@ public class LeetCodeExercises {
         node.val = node.next.val;
         node.next = node.next.next;    
     }
+
+    //@TODO: I cannot make it to work.
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode minusNthNode=head,currentNode=head;
+        int i=1;
+        while(currentNode!=null) {
+            if(i==n) {
+                minusNthNode = minusNthNode.next;
+            }
+            else {
+                ++i;
+            }
+            currentNode = currentNode.next;
+        }
+        if(minusNthNode==head) {
+            return head.next;
+        }
+        else if(head.next == minusNthNode) {
+            head.next = null;
+            return head;
+        }
+        else {
+            minusNthNode.val = minusNthNode.next.val;
+            minusNthNode.next = minusNthNode.next.next;
+            return head;
+        }
+    }
+
     
+    public ListNode reverseList(ListNode head) {
+        ListNode current = head, prev = null, next; 
+        while(current!=null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        } 
+        return prev;
+    }
+    
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1==null && list2==null) return null;
+        
+        ListNode current = new ListNode(), newListHead = current;
+        while(list1!=null || list2!=null) {
+            if(list1!=null && list2!=null) {
+                if(list1.val<=list2.val) {
+                    current.val = list1.val;
+                    list1 = list1.next;
+                }
+                else {
+                    current.val = list2.val;
+                    list2 = list2.next;
+                }
+            }
+            else if(list1!=null && list2==null) {
+                current.val = list1.val;
+                list1 = list1.next;
+            }
+            else {
+                current.val = list2.val;
+                list2 = list2.next;
+            }
+            if(list1!=null || list2!=null) {
+                current.next = new ListNode();
+                current = current.next;
+            }
+        }
+        return newListHead;
+    }
+
+    //Did the brute force approach with a StringBuilder
+    public boolean isPalindrome(ListNode head) {
+        StringBuilder palindromBuilder = new StringBuilder();
+        while(head!=null) {
+            palindromBuilder.append(head.val);
+            head = head.next;
+        }        
+        for(int i = 0 ; i< palindromBuilder.length()/2 ;i++) {
+            if(palindromBuilder.charAt(i)!=palindromBuilder.charAt(palindromBuilder.length()-i-1)) {
+                return false;
+            }
+        }
+        return true;     
+    }
+
+
+    //Very poor performance but it works. 
+    public boolean hasCycle(ListNode head) {
+        ListNode monitor = head, xNode;
+        if(monitor!= null && monitor.next!=null && monitor==monitor.next) {
+            return true;
+        }
+        while(monitor!= null && monitor.next!=null) {
+            xNode = head;
+            monitor = monitor.next;
+            if(monitor == monitor.next) {
+                return true; 
+            }
+            while(xNode!=monitor) {                
+                 if(xNode == monitor.next) {
+                    return true;
+                 }
+                 else {
+                    xNode = xNode.next;
+                 }
+            }
+        }
+        return false;  
+    }
 }
