@@ -3,6 +3,7 @@ package problems.leetcode;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class LeetCodeExercises {
@@ -664,8 +665,20 @@ public class LeetCodeExercises {
     public boolean isSymmetric(TreeNode root) {
         Deque<TreeNode> currQueue = new LinkedList<>();
         Deque<TreeNode> nextQueue;
-        currQueue.add(root.left);
-        currQueue.add(root.right);
+        if(root.left==null) {
+            currQueue.add(new TreeNode(-500));    
+        }
+        else {
+            currQueue.add(root.left);    
+        }
+        if(root.right==null) {
+            currQueue.add(new TreeNode(-500));
+        }
+        else {
+            currQueue.add(root.right);
+        }
+        
+        
         while(!currQueue.isEmpty()) {
             Iterator<TreeNode> it = currQueue.iterator();
             nextQueue = new LinkedList<>();
