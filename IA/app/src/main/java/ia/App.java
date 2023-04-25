@@ -7,12 +7,17 @@ import com.theokanning.openai.service.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        OpenAiService service = new OpenAiService("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");
+        String openAIKey;
+        if(args.length>0 && args[0]!=null && args[0].startsWith("sk")) {
+            openAIKey = args[0];
+        }
+        else {
+            System.out.println("No API Key");
+            return;
+        }
+        OpenAiService service = new OpenAiService(openAIKey);
 CompletionRequest completionRequest = CompletionRequest.builder()
         .prompt("Somebody once told me the world is gonna roll me")
         .model("ada")
