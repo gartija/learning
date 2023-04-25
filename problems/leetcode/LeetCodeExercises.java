@@ -1,5 +1,10 @@
 package problems.leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.Queue;
+
 public class LeetCodeExercises {
     public static void main(String[] args) {
         int [] arr1 = {2,7,11,15};
@@ -563,4 +568,134 @@ public class LeetCodeExercises {
         }
         return false;  
     }
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     *     int val;
+     *     TreeNode left;
+     *     TreeNode right;
+     *     TreeNode() {}
+     *     TreeNode(int val) { this.val = val; }
+     *     TreeNode(int val, TreeNode left, TreeNode right) {
+     *         this.val = val;
+     *         this.left = left;
+     *         this.right = right;
+     *     }
+     * }
+     */
+
+     public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    class Solution {
+        public int maxDepth(TreeNode root) {
+            if(root == null) {
+                return 0;
+            }
+            if(root.left != null && root.right != null) {
+                int left = maxDepth(root.left);
+                int right = maxDepth(root.right); 
+                return left>=right?left+1:right+1;
+            }
+            else if(root.left != null && root.right == null) {
+                int left = maxDepth(root.left);
+                return left+1;
+            }
+            else if(root.left == null && root.right != null) {
+                int right = maxDepth(root.right);
+                return right+1;
+            }
+            else {
+                return 1;
+            }
+        }
+    }
+
+    
+    public boolean isValidBST(TreeNode root) {
+        if(root == null) {
+            return true;
+        }  
+        return isValidBST(root, null, null);
+    }
+
+    private boolean isValidBST(TreeNode root, Integer notLessThan, Integer notGreaterThan) {
+        boolean ret = false;  
+        if(root.left!= null) {
+            if(root.left.val<root.val && (notLessThan==null || root.left.val>notLessThan)) {
+                ret = isValidBST(root.left,notLessThan,root.val);
+            }
+            else {
+                ret=false;
+            }
+        }
+        else {
+            ret = true;  
+        }
+        if(!ret) {
+            return false;
+        }        
+        if(root.right!= null) {
+            if(root.right.val>root.val && (notGreaterThan==null || root.right.val<notGreaterThan)) {
+                ret = isValidBST(root.right,root.val,notGreaterThan);
+            }
+            else {
+                ret = false;
+            }
+        }
+        else {
+            ret = true; 
+        }
+        return ret;
+
+    }
+
+    public boolean isSymmetric(TreeNode root) {
+        Deque<TreeNode> currQueue = new LinkedList<>();
+        Deque<TreeNode> nextQueue;
+        currQueue.add(root.left);
+        currQueue.add(root.right);
+        while(!currQueue.isEmpty()) {
+            Iterator<TreeNode> it = currQueue.iterator();
+            nextQueue = new LinkedList<>();
+            while(it.hasNext()) {
+                var curNode = it.next();
+                if(curNode!=null) {
+                    if(curNode.left==null && curNode.right!=null) {
+                        nextQueue.add(new TreeNode(-500));
+                    }
+                    else {
+                        nextQueue.add(curNode.left);    
+                    }
+                    if(curNode.right==null && curNode.left!=null) {
+                        nextQueue.add(new TreeNode(-500));
+                    }
+                    else {
+                        nextQueue.add(curNode.right);
+                    }
+                }
+            }
+            while(currQueue.peek()!=null && currQueue.peekLast()!=null) {
+                TreeNode head=currQueue.pollFirst();
+                TreeNode tail=currQueue.pollLast();
+                if( head.val!=tail.val ) {
+                    return false;
+                }    
+            }
+            currQueue = nextQueue;
+        }
+        return true;
+    }
+    
 }
